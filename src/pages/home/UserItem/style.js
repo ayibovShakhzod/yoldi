@@ -1,4 +1,5 @@
 import { Box } from "@/components/Box"
+import { Text } from "@/components/Typography"
 import styled from "styled-components"
 
 export const Wrapper = styled(Box)`
@@ -16,4 +17,11 @@ export const Wrapper = styled(Box)`
     pointer-events: none;
     border-bottom: 1px solid ${(props) => props.theme.strokes.secondary};
   }
+`
+
+export const Name = styled(Text)`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 70px);
 `

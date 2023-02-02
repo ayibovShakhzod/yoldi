@@ -14,6 +14,7 @@ import axiosClient from "src/services/apiService"
 import { toast } from "react-toastify"
 import { cookies } from "src/services/cookie"
 import { CookieKeys } from "src/constants"
+import { Validations } from "src/services/validations"
 
 const RegisterForm = () => {
   const router = useRouter()
@@ -25,9 +26,9 @@ const RegisterForm = () => {
       password: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().email().required(),
-      name: Yup.string().min(3).required(),
-      password: Yup.string().min(8).required(),
+      email: Validations.email,
+      name: Validations.name,
+      password: Validations.password,
     }),
     onSubmit: (values) => {
       axiosClient
@@ -86,7 +87,7 @@ const RegisterForm = () => {
                 </IconBox>
               }
             />
-            <Button disabled={!isValid} btn="primary" type="submit" width="100%">
+            <Button disabled={!isValid} btn="primary" type="submit" width="100%" mt="10px">
               Создать аккаунт
             </Button>
           </StyledForm>

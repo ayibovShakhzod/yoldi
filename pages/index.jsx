@@ -21,7 +21,7 @@ const Home = () => {
         {users && (
           <UserList>
             {users.map((user) => (
-              <Link href={`/user/${user.slug}`}>
+              <Link key={user?.slug} href={`/user/${user.slug}`}>
                 <UserItem user={user} />
               </Link>
             ))}
