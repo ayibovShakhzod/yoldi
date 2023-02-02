@@ -31,6 +31,8 @@ export const Text = styled.div`
       },
     },
   })}
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 
   ${space}
   ${color}

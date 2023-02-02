@@ -6,7 +6,7 @@ import { Container } from "@/components/Container"
 import { Layout } from "@/components/Layout"
 import { Text } from "@/components/Typography"
 import { useRouter } from "next/router"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { UserInfoBox } from "src/pages/user/style"
 import axiosClient from "src/services/apiService"
 import useSWR from "swr"
@@ -16,6 +16,7 @@ import { ReactComponent as SignOutIcon } from "src/assets/icons/sign-out.svg"
 import { theme } from "src/styles/theme"
 import { cookies } from "src/services/cookie"
 import { CookieKeys } from "src/constants"
+import EditProfileModal from "src/pages/user/EditProfile/Modal"
 
 const User = () => {
   const router = useRouter()
@@ -26,6 +27,32 @@ const User = () => {
 
   const { data, error, isLoading } = useSWR(slug ? url : null, axiosClient.get)
   const user = data?.data
+
+  const [isOpenEditModal, setIsOpenEditModal] = useState(false)
+
+  const closeEditModal = () => {
+    setIsOpenEditModal(false)
+    router.replace({
+      pathname: "/user/[slug]",
+      query: { slug: "profile" },
+    })
+  }
+
+  const openEditModal = () => {
+    setIsOpenEditModal(true)
+    router.push({
+      pathname: "/user/[slug]",
+      query: { slug: "profile", edit: "open" },
+    })
+  }
+
+  useEffect(() => {
+    if (router.query.edit) {
+      setIsOpenEditModal(true)
+    } else {
+      setIsOpenEditModal(false)
+    }
+  }, [router])
 
   useEffect(() => {
     if (error) {
@@ -38,15 +65,20 @@ const User = () => {
     router.replace("/")
   }
 
-  if (isLoading) return "Loading..."
-
   return (
     <Layout>
       <Banner src={user?.cover?.url} />
       <Container>
         <UserInfoBox>
           <Avatar name={user?.name} src={user?.image?.url} size="large" />
-          <Box mt="35px" display="flex" justifyContent="space-between">
+          {isLoading && "Loading..."}
+          <Box
+            mt="35px"
+            display="flex"
+            flexDirection={["column", "column", "column", "row"]}
+            alignItems="self-start"
+            justifyContent="space-between"
+          >
             <Box display="flex" flexDirection="column" width="100%" maxWidth="600px">
               <Text type="title">{user?.name}</Text>
               <Text mt="10px" color={theme.gray}>
@@ -54,7 +86,7 @@ const User = () => {
               </Text>
             </Box>
             {isOwner && (
-              <Button btn="secondary">
+              <Button mt={["10px", "10px", "10px", "0"]} btn="secondary" onClick={openEditModal}>
                 <Box display="flex">
                   <Box width="25px" height="25px" mr="10px">
                     <PenIcon />
@@ -81,6 +113,7 @@ const User = () => {
           )}
         </UserInfoBox>
       </Container>
+      {isOpenEditModal && isOwner && <EditProfileModal onClose={closeEditModal} user={user} />}
     </Layout>
   )
 }

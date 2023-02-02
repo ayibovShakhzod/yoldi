@@ -1,14 +1,6 @@
-import { Text } from "@/components/Typography"
 import styled, { css } from "styled-components"
-import { border } from "styled-system"
 
-export const InputLabel = styled(Text).attrs({ type: "btn" })`
-  color: ${(props) => props.theme.gray};
-  margin-bottom: 5px;
-  cursor: default;
-`
-
-export const StyledInput = styled.input`
+export const StyledTextArea = styled.textarea`
   width: 100%;
   height: 100%;
   border: none;
@@ -19,17 +11,9 @@ export const StyledInput = styled.input`
   line-height: 160%;
   color: inherit;
   background: transparent;
+  resize: none;
   &::placeholder {
     color: ${(props) => props.theme.gray};
-  }
-  :-webkit-autofill,
-  :-webkit-autofill:focus,
-  :-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px ${(props) => props.theme.background.primary} inset;
-    -webkit-text-fill-color: ${(props) => props.theme.txt.color};
-  }
-  :-webkit-autofill:hover {
-    -webkit-box-shadow: 0 0 0 30px ${(props) => props.theme.background.primary} inset;
   }
 `
 
@@ -41,8 +25,6 @@ export const Wrapper = styled.div`
   align-items: center;
   cursor: text;
   padding: 12px 20px;
-  gap: 10px;
-  height: 50px;
   background: ${(props) => props.theme.background.primary};
   border: 1px solid ${(props) => props.theme.strokes.primary};
   border-radius: 5px;
@@ -70,5 +52,4 @@ export const Wrapper = styled.div`
         cursor: not-allowed;
       }
     `}
-  ${border}
 `

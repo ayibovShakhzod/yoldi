@@ -1,5 +1,6 @@
 import { Box } from "@/components/Box"
 import { Form } from "formik"
+import { media } from "src/styles/media"
 import styled from "styled-components"
 
 export const FormWrapper = styled(Box)`
@@ -12,6 +13,11 @@ export const FormWrapper = styled(Box)`
   border-radius: 5px;
   max-width: 400px;
   width: 100%;
+  ${media.sm`
+    width: 100%;
+    max-width: 100%;
+    border: none;
+  `}
 `
 
 export const AuthWrapper = styled(Box)`
@@ -21,6 +27,10 @@ export const AuthWrapper = styled(Box)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  ${media.sm`
+    justify-content: start;
+    height: auto;
+  `}
 `
 
 export const AuthFooter = styled(Box)`
@@ -33,7 +43,7 @@ export const AuthFooter = styled(Box)`
   background: ${(props) => props.theme.background.primary};
   border-top: 1px solid ${(props) => props.theme.strokes.secondary};
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
