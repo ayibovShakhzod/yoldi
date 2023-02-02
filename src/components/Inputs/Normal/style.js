@@ -47,7 +47,7 @@ export const Wrapper = styled.div`
   ${(props) =>
     props.isError &&
     css`
-      border-color: ${props.theme.error};
+      border-color: ${props.theme.error} !important;
       color: ${props.theme.error};
     `}
 
