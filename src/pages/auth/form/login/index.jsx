@@ -13,6 +13,7 @@ import { cookies } from "src/services/cookie"
 import { useState } from "react"
 import { CookieKeys } from "src/constants"
 import { useRouter } from "next/router"
+import { Validations } from "src/services/validations"
 
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -24,8 +25,8 @@ const LoginForm = () => {
       password: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().email().required(),
-      password: Yup.string().min(8).required(),
+      email: Validations.email,
+      password: Validations.password,
     }),
     onSubmit: (values) => {
       setIsLoading(true)
@@ -84,6 +85,7 @@ const LoginForm = () => {
               width="100%"
               isLoading={isLoading}
               loadingLabel={"Войти..."}
+              mt="10px"
             >
               Войти
             </Button>

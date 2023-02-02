@@ -1,3 +1,4 @@
+import { media } from "src/styles/media"
 import styled from "styled-components"
 
 export const Container = styled.div`
@@ -6,4 +7,8 @@ export const Container = styled.div`
   padding: 0 30px;
   margin: 0 auto;
   display: block;
+
+  ${media.sm`
+    padding: 0 20px;
+  `}
 `

@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Button } from "../Button"
-import { Logo, Wrapper } from "./style"
+import { Logo, Name, Wrapper } from "./style"
 import { useRouter } from "next/router"
 import { Box } from "../Box"
 import { cookies } from "src/services/cookie"
@@ -18,12 +18,17 @@ export const Nav = () => {
 
   useEffect(() => {
     if (isLogin) {
-      axiosClient.get("/profile").then((res) => {
-        setUser(res.data)
-      })
+      axiosClient
+        .get("/profile")
+        .then((res) => {
+          setUser(res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     } else {
       setUser(null)
-      router.push("/login")
+      // router.push("/login")
     }
   }, [isLogin])
 
@@ -33,7 +38,7 @@ export const Nav = () => {
         <Link href="/">
           <Logo alt="yoldi" priority width={80} height={50} />
         </Link>
-        <Text ml="20px">
+        <Text ml="20px" display={["none", "inline"]}>
           Разрабатываем и запускаем <br /> сложные веб проекты
         </Text>
       </Box>
@@ -45,7 +50,7 @@ export const Nav = () => {
       {user?.email && (
         <Link href="/user/profile">
           <Box display="flex" alignItems="center" justifyContent="center">
-            <Text mr="20px">{user?.name}</Text>
+            <Name>{user?.name}</Name>
             <Avatar name={user?.name} src={user?.image?.url} />
           </Box>
         </Link>
