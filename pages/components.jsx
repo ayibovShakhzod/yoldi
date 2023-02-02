@@ -1,9 +1,10 @@
+import { Field, Form, Formik } from "formik"
+import * as Yup from "yup"
+
 import { Button } from "@/components/Button"
 import { InputFormik } from "@/components/Formik"
 import { NormalInput } from "@/components/Inputs"
 import { Text } from "@/components/Typography"
-import { Field, Form, Formik } from "formik"
-import * as Yup from "yup"
 
 const Components = () => {
   const formik = {

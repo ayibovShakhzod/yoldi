@@ -1,11 +1,11 @@
 import styled from "styled-components"
 import { background, border, color, flexbox, layout, position, space, typography, variant } from "styled-system"
 
-export const Text = styled.h2.attrs((props) => {
-  type: props.type || "text"
-})`
+export const Text = styled.div`
   font-style: normal;
-
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 160%;
   ${variant({
     prop: "type",
     variants: {
@@ -27,11 +27,6 @@ export const Text = styled.h2.attrs((props) => {
       btn: {
         fontWeight: "500",
         fontSize: "16px",
-        lineHeight: "160%",
-      },
-      text: {
-        fontWeight: "400",
-        fontSize: "12px",
         lineHeight: "160%",
       },
     },

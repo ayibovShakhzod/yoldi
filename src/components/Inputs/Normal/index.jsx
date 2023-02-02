@@ -1,6 +1,7 @@
 import { Text } from "@/components/Typography"
 import { StyledInput, Wrapper } from "./style"
 import useFocus from "src/hooks/useFocus"
+import { Box } from "@/components/Box"
 
 export const NormalInput = ({ name, disabled, isError, helperText, startAdornment, endAdornment, ...otherProps }) => {
   const [inputRef, setInputFocus] = useFocus()
@@ -10,7 +11,7 @@ export const NormalInput = ({ name, disabled, isError, helperText, startAdornmen
   }
 
   return (
-    <>
+    <Box display="flex" width="100%" flexDirection="column">
       <Wrapper onClick={onClickWrapper} isError={isError} disabled={disabled}>
         {startAdornment}
         <StyledInput disabled={disabled} ref={inputRef} id={name} {...otherProps} />
@@ -21,6 +22,6 @@ export const NormalInput = ({ name, disabled, isError, helperText, startAdornmen
           {helperText}
         </Text>
       )}
-    </>
+    </Box>
   )
 }
