@@ -15,6 +15,7 @@ export const StyledForm = styled(Form)`
 
 export const SlugDomainBox = styled(Box)`
   display: flex;
+  width: 100%;
   background: ${(props) => props.theme.background.secondary};
   color: ${(props) => props.theme.gray};
   border: 1px solid ${(props) => props.theme.strokes.primary};
@@ -26,6 +27,11 @@ export const SlugDomainBox = styled(Box)`
   font-size: 16px;
   height: 50px;
   line-height: 160%;
+  overflow-x: auto;
+  white-space: nowrap;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   ${media.sm`
     border-radius: 5px 5px 0 0;
     width: 100%;
