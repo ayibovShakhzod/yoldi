@@ -1,10 +1,12 @@
 import axios from "axios"
+import { cookies } from "./cookie"
+import { CookieKeys } from "src/constants"
 
-export const Axios = axios.create({
-  baseURL: import.meta.env.VITE_CCTV_BASE_URL,
-})
+const axiosClient = axios.create()
 
-Axios.interceptors.response.use(
+axiosClient.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL
+
+axiosClient.interceptors.response.use(
   function (response) {
     return response
   },
@@ -13,13 +15,13 @@ Axios.interceptors.response.use(
   }
 )
 
-Axios.interceptors.request.use(
+axiosClient.interceptors.request.use(
   (config) => {
-    const token = ""
+    const token = cookies.get(CookieKeys.ACCESS_TOKEN)
     return {
       ...config,
       headers: {
-        Authorization: `Bearer ${token}`,
+        "X-API-KEY": token,
       },
     }
   },
@@ -27,3 +29,5 @@ Axios.interceptors.request.use(
     return Promise.reject(error)
   }
 )
+
+export default axiosClient

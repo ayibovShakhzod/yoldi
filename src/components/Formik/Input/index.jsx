@@ -6,7 +6,7 @@ import { getIn } from "formik"
 import { ReactComponent as EyeIcon } from "src/assets/icons/eye.svg"
 import { ReactComponent as EyeSlashIcon } from "src/assets/icons/eye-slash.svg"
 
-export const Input = ({ isError, helperText, type = "text", field, form, endComponent, ...rest }) => {
+export const Input = ({ isError, helperText, type = "text", field, form, endAdornment, ...rest }) => {
   const isTouched = getIn(form.touched, field.name)
   const errorMessage = getIn(form.errors, field.name)
 
@@ -20,6 +20,7 @@ export const Input = ({ isError, helperText, type = "text", field, form, endComp
         endAdornment:
           type === "password" ? (
             <PickerWrapper
+              type="button"
               onClick={() => {
                 setCanPick(!canPick)
               }}
@@ -27,7 +28,7 @@ export const Input = ({ isError, helperText, type = "text", field, form, endComp
               {canPick === false ? <EyeIcon /> : <EyeSlashIcon />}
             </PickerWrapper>
           ) : (
-            endComponent
+            endAdornment
           ),
       }}
       type={type === "password" && !canPick ? "password" : type !== "password" ? type : "text"}
