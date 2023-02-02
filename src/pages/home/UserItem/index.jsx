@@ -2,7 +2,7 @@ import Avatar from "@/components/Avatar"
 import { Box } from "@/components/Box"
 import { Text } from "@/components/Typography"
 import { theme } from "src/styles/theme"
-import { Wrapper } from "./style"
+import { Wrapper, Name } from "./style"
 
 const UserItem = ({ user }) => {
   return (
@@ -15,11 +15,12 @@ const UserItem = ({ user }) => {
         width="100%"
         display="flex"
         flexDirection={["column", "row"]}
+        flexWrap="wrap"
         alignItems={["self-start", "center"]}
         justifyContent="space-between"
       >
-        <Text type="btn">{user?.name}</Text>
-        <Text color={theme.gray}>{user?.email}</Text>
+        <Name type="btn">{user?.name}</Name>
+        <Name color={theme.gray}>{user?.email}</Name>
       </Box>
     </Wrapper>
   )
