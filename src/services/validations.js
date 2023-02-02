@@ -5,5 +5,5 @@ export const Validations = {
   password: Yup.string().min(3).required(),
   name: Yup.string().min(3).required(),
   description: Yup.string(),
-  slug: Yup.string().min(3).required(),
+  slug: Yup.string().trim().strict(true).min(3).required(),
 }

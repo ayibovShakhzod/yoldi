@@ -9,7 +9,7 @@ const EditProfileModal = ({ onClose, user }) => {
     <Modal onClose={onClose}>
       <Box display="flex" flexDirection="column" width="100%">
         <Text type="title">Редактировать профиль</Text>
-        <EditForm onCancel={onClose} user={user} />
+        {user && <EditForm onCancel={onClose} user={user} />}
       </Box>
     </Modal>
   )
